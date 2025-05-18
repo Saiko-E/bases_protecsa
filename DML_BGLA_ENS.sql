@@ -169,9 +169,65 @@ INSERT INTO inversion_bolsa_valores (servicio_id, indice_bursatil, nombre_fondo_
 (1010, 690.40, 'Fondo Agroindustria', 8),
 (1011, 880.90, 'Fondo Inteligencia Artificial', 10);
 
+-- Update, cambiar Ricardo por Jimena 
+select * from cliente;
 
+UPDATE cliente 
+SET nombre = 'Jimena', ap_mat = 'Espino' 
+WHERE cliente_id = 105; 
 
+select * from cliente;
 
+-- Rename 
+select * from delegacion;
+EXEC sp_rename 'delegacion', 'alcaldia'
+select * from alcaldia;
 
+-- lo vuelvo a cambiar
+EXEC sp_rename 'alcaldia', 'delegacion'
 
+-- DELETE
+select * from cnb;
+
+-- primero borrmos tablas dependientes
+select * from inversion_bolsa_valores;
+
+DELETE FROM inversion_bolsa_valores
+WHERE transaccion_id=8;
+
+select * from inversion;
+
+select * from cnb;
+
+DELETE FROM cnb 
+WHERE transaccion_id=8;
+
+select * from cnb;
+
+-- Alter, agregar y quitar una columna
+select * from estado;
+ALTER TABLE estado ADD pais VARCHAR(100)
+select * from estado;
+
+-- Agrego valores a esa nueva columna
+UPDATE estado
+SET pais= 'México'
+
+select * from estado
+
+-- Quito esa columna
+ALTER TABLE estado DROP COLUMN pais;
+select * from estado;
+
+UPDATE cliente 
+SET nombre = 'Rogelio', ap_pat = 'Olvera' 
+WHERE cliente_id = 101; 
+
+select * from cliente
+
+UPDATE cliente 
+SET nombre = 'Dinorah' 
+WHERE cliente_id = 100; 
+
+select * from cliente
 
